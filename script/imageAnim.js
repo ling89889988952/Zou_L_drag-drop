@@ -1,23 +1,53 @@
 (() => {
 	console.log('fired');
 
-	const theButton = document.querySelector('#buttonHolder img')
-
-
-	function changeHeadline(){
-		document.querySelector("h1").textContent = 'Hello there from JS!';
-		// note - using this way to change the h1 when load
-		document.querySelector('p').textContent = 'This is subhead';
-		// note - using this way to change the subhead when load
-		
-	}
+	
 	// set up the puzzle pieces and boards
 	//
-	
-	//window.addEventListener('load', changeHeadline);
-	// note - through loading the windown change the ha and subhead(means give the 'load' action a function)
+	// need a reference to each piec that we want to create
+	const thePieces = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight'];
 
-	theButton.addEventListener('click', changeHeadline);
-	// note - through click the first img to change the h1 and subhead (means give the first buttonHolder img a function)
+	// get a reference to tha drag side
+
+	let piecesBoard = document.querySelector('.puzzle-pieces'); // pay attention to wright clss and id
+	let puzzleBoard = document.querySelector('.puzzle-board');
+	
+	// get a reference to the buttons at the buttom so we can change the puzzle
+
+	let puzzleSelectors = document.querySelectorAll('#buttonHolder img');
+
+	// functions go in the middle
+	function createPuzzlePieces(pictureIndex) {
+		// generate images here -> need to make 4(top left, top right, buttom left, button right)
+		//debugger;
+		//
+		//loop through the images refs and generate one for each
+		thePieces.forEach((piece, index) => {
+			let newPuzzlePiece = `<img id="piece${index}" class="puzzle-image"
+				src="images/${piece + pictureIndex}.jpg" alt="puzzle piece"> `;	
+
+			piecesBoard.innerHTML += newPuzzlePiece;
+		});
+	}
+
+	function resetPuzzlePieces(){
+		// change the curent puzzle, regenerate the pieces
+
+		//debugger;
+		//
+		//clean out the puzzle pieces div
+
+		piecesBoard.innerHTML = "";
+
+		// generate new pieces
+		createPuzzlePieces(this.dataset.puzzleref);
+	}
+
+	// event handling gose here
+	puzzleSelectors.forEach(button => button.addEventListener("click", resetPuzzlePieces));
+
+	//call this function to set up / generate the pieces on load
+	createPuzzlePieces(0);
+
 })();
 
