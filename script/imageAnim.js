@@ -83,6 +83,10 @@
 
 		piecesBoard.innerHTML = "";
 
+		dropZones.forEach(zone => {  
+			zone.innerHTML = "" ;
+		});
+
 		// generate new pieces
 		createPuzzlePieces(this.dataset.puzzleref);
 	}
