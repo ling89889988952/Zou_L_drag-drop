@@ -69,7 +69,14 @@
 				console.log('you dropped somethin on me!'); 
 
 				let piece = e.dataTransfer.getData("text/plain");
-				e.target.appendChild(document.querySelector(`#${piece}`)); 
+				// bug1 
+				
+				if(e.currentTarget.firstElementChild){
+					let currentImage = e.currentTarget.firstElementChild;
+					piecesBoard.appendChild(currentImage);
+				}
+
+				e.currentTarget.appendChild(document.querySelector(`#${piece}`)); 
 			})
 	})
 
