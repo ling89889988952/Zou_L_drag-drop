@@ -74,6 +74,8 @@
 				if(e.currentTarget.firstElementChild){
 					let currentImage = e.currentTarget.firstElementChild;
 					piecesBoard.appendChild(currentImage);
+
+					console.log('you can change the images followed your mind.');
 				}
 
 				e.currentTarget.appendChild(document.querySelector(`#${piece}`)); 
